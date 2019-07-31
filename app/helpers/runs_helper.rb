@@ -1,11 +1,15 @@
 module RunsHelper
 
-  def user_edit_run(text, href)
-    "<a href='#{href}'>#{text}</a>".html_safe
+  def user_edit(run)
+    if @user == current_user
+      link_to("Edit", edit_run_path(run)).html_safe
+    end
   end
 
-  def user_delete_run(text, href, method)
-    "<a data-method=\"delete\" href=\'#{href}\'>#{text}</a>".html_safe
+  def user_delete(run)
+    if @user == current_user
+      link_to("Delete", run_path(run), method: :delete).html_safe
+    end
   end
 end
 
