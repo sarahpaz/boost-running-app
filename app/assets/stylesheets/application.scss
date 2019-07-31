@@ -67,6 +67,7 @@ img.logo {
 .boost-btn.btn-primary.btn-sm:hover {
   background-color: #85f1f5;
   border-color: #85f1f5;
+  text-decoration: none;
 }
 
 #user_username,
@@ -131,6 +132,12 @@ a {
 a:hover {
   color: #5ce1e6;
   background-color: #fff;
+}
+
+.total-raised,
+.top-runner {
+  color: #5ce1e6;
+  font-size: 2rem;
 }
 
 .charity-name {
