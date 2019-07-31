@@ -7,7 +7,7 @@
       Duration (mins): <%= @run.duration %><br>
       Location: <%= @run.location %><br>
 
-      <%= user_delete_run %>
+      <%= user_edit_run 'Edit', edit_run_path(@run.id)%> | <%= user_delete_run 'Delete', run_path(@run), method: :delete %><br>
     
     </div>
   </div>
