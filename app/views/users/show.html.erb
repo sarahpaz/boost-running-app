@@ -15,7 +15,7 @@
               Amount Raised: $<%= r.distance * 3 %> <br>
 
               <% if @user == current_user %>
-                <%= link_to 'Edit', edit_run_path(r.id) %> | <%= link_to "Delete", run_path(r), method: :delete, data: { confirm: 'Are you sure you want to delete this run?'} %><br>
+                <%= user_edit_run 'Edit', edit_run_path(r.id)%> | <%= user_delete_run 'Delete', run_path(r), method: :delete %>
               <% end %> 
               <br>
             </div>
