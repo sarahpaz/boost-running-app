@@ -3,7 +3,7 @@
     <h2>Edit a Run</h2>
 
     <div>
-      <%= form_for @run do |f| %>
+      <%= form_for(@run) do |f| %>
         <%= render partial: 'layouts/run_form', locals: {f: f} %>
 
         <p>
@@ -12,7 +12,7 @@
         </p>
         
         <p>
-          <%= f.submit %>
+          <%= f.submit "Edit Run", :class => 'boost-btn btn-primary btn-sm' %>
         </p>
 
       <% end %>
