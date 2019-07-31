@@ -12,12 +12,9 @@
               Duration (mins): <%= r.duration %><br>
               Location: <%= r.location %><br>
               Notes: <%= r.notes %> <br>
-              Amount Raised: $<%= r.distance * 3 %> <br>
-
-              <% if @user == current_user %>
-                <%= user_edit_run 'Edit', edit_run_path(r.id)%> | <%= user_delete_run 'Delete', run_path(r), method: :delete %>
-              <% end %> 
-              <br>
+              Amount Raised: $<%= r.distance * 3 %><br>
+              <%= user_edit(r.id) %><br>  <%= user_delete(r.id) %>
+              <br><br>
             </div>
           <% end %>
       </div>
