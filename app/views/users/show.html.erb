@@ -7,14 +7,14 @@
         <h3>All Runs</h3>
           <% @user.runs.each do |r| %>
             <div>
+            <br>
               Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
               Distance (miles): <%= r.distance %><br>
               Duration (mins): <%= r.duration %><br>
               Location: <%= r.location %><br>
               Notes: <%= r.notes %> <br>
-              Amount Raised: $<%= r.distance * 3 %><br>
-              <%= user_edit(r.id) %><br>  <%= user_delete(r.id) %>
-              <br><br>
+              Amount Raised: $<%= r.distance * 3 %>
+              <div><%= user_edit(r.id) %>&nbsp;<%= user_delete(r.id) %></div>
             </div>
           <% end %>
       </div>
@@ -28,7 +28,7 @@
         <% end %>
 
       <h3>Total Raised</h3>
-      <p>$<%= total_raised %></p>
+      <p class="total-raised">$<%= total_raised %></p>
     </div>
   </div>
 </div>
