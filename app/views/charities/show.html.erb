@@ -5,7 +5,7 @@
     <p><%= @charity.description %></p>
 
     <h3>Total Raised</h3>
-    <p>$<%= @charity.runs.inject(0) {|sum, r| sum + r.distance * 4}%></p>
+    <p>$<%= charity_total_raised %></p>
 
     <% !if @charity.runs.present? %>
     <h3>Top Runner</h3>
