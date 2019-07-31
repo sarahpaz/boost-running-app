@@ -2,6 +2,7 @@ class CharitiesController < ApplicationController
 
   def show
     @charity = Charity.find_by(id: params[:id])
+    redirect_to charities_path if !@charity
   end
 
   def index
