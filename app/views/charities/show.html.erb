@@ -5,29 +5,18 @@
     <p><%= @charity.description %></p>
 
     <h3>Total Raised</h3>
-    <p>$<%= charity_total_raised %></p>
-
-    <% !if @charity.runs.present? %>
+    <p class="total-raised">$<%= charity_total_raised %></p>
     <h3>Top Runner</h3>
-
-      <%= User.total_charity_runs(@charity) %>
-      <p>Beat our top runner, and <%= link_to "add a run for the #{@charity.name}", new_charity_run_path(@charity) %>!</p>
-    <% end %>
+    <p class="top-runner"><%= top_runner %></p>
 
     <h3>Runs</h3>
-
-    <% if !@charity.runs.present? %>
-
-      <p>No runs yet! Be first to <%= link_to "add a run", new_charity_run_path(@charity) %>!<p>
-
-    <% else %>
-
+  
       <% @charity.runs.each do |r| %> 
         Distance: <%= r.distance %> miles - Raised: $<%= r.distance * 3 %> - Runner: <%= link_to r.user.username, user_path(r.user) %><br><br>
       <% end %>
 
-      <%= link_to "View Runs", charity_runs_path(@charity), :class => 'boost-btn btn-primary btn-sm' %>&nbsp; <%= link_to "Add a Run", new_charity_run_path(@charity), :class => 'boost-btn btn-primary btn-sm' %>
-      
-    <% end %>
+      <%= runs_to_view %>
+      <%= link_to "Add a Run", new_charity_run_path(@charity), :class => 'boost-btn btn-primary btn-sm' %>
+  
   </div>  
 </div>
