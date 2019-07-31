@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_user, :logged_in?, :total_raised, :top_charities
+  helper_method :current_user, :logged_in?, :total_raised, :charity_total_raised
   add_flash_types :danger
 
   private
@@ -17,4 +17,7 @@ class ApplicationController < ActionController::Base
     @user.runs.inject(0) { |sum, r| sum + r.distance * 3 }
   end
 
+  def charity_total_raised
+    @charity.runs.inject(0) { |sum, r| sum + r.distance * 3 }
+  end
 end
