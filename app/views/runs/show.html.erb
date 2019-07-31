@@ -5,10 +5,8 @@
       Charity: <%= link_to @run.charity.name, charity_path(@run.charity.id) %><br>
       Distance (miles): <%= @run.distance %><br>
       Duration (mins): <%= @run.duration %><br>
-      Location: <%= @run.location %><br>
-
-      <%= user_edit(r.id) %> <%= user_delete(r.id) %><br>
-    
+      Location: <%= @run.location %><br><br>
     </div>
+    <%= link_to "View all your runs", user_path(current_user)%>
   </div>
 </div>
