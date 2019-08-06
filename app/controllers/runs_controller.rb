@@ -49,4 +49,5 @@ class RunsController < ApplicationController
   def run_params
     params.require(:run).permit(:distance, :duration, :location, :shoes, :notes, :charity_id, charity_attributes: [:name, :description])
   end
+
 end
