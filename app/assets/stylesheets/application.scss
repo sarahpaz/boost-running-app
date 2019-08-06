@@ -154,11 +154,16 @@ a:hover {
   border: 1px solid red;
 }
 
+div.field_with_errors {
+  display: inline-block;
+}
+
 div#error_explanation ul {
   margin: 0;
   padding: 10px 0;
   list-style: none;
 }
+
 #error_explanation ul li {
   color: red;
 }
