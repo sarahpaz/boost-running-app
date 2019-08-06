@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :runs
-  resources :charities
-  resources :users
+  resources :charities, only: [:index, :show]
+  resources :users, only: [:index, :new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#index'
 
@@ -16,10 +16,6 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
   get '/welcome' => 'sessions#show'
-  
-  resources :users, only: [:index, :new, :create, :show]
-
-  resources :runs
 
   resources :charities do 
     resources :runs, only: [:new, :index]
