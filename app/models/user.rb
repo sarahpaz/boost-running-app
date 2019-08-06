@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  scope :most_distance, -> { joins(:runs).group(:id).order("distance").limit(1)}
+
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
       user.username = auth.info.name
