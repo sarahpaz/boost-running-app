@@ -9,7 +9,7 @@ class RunsController < ApplicationController
   end
 
   def show
-    @run = Run.find_by(id: params[:id]) 
+    @run = Run.find_by(id: params[:id]) #create a helper / before action
     redirect_to runs_path if !@run
   end
 
