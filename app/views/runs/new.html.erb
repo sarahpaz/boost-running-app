@@ -16,7 +16,7 @@
         <% if !params[:charity_id].present?  %>
           <p>Or add a new charity:</p>
           <p>
-            <%=f.fields_for :charity do |c| %>
+            <%= fields_for :charity do |c| %>
               <%= c.label :name %>:
               <%= c.text_field :name %><br><br>
               <%= c.label :description %>:
