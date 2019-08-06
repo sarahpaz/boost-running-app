@@ -20,4 +20,5 @@ class ApplicationController < ActionController::Base
   def charity_total_raised
     @charity.runs.inject(0) { |sum, r| sum + r.distance * 3 }
   end
+  
 end

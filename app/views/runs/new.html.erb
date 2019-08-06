@@ -13,8 +13,7 @@
             <%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => params[:charity_id])%>
         </p>
 
-
-        <% if !params[:charity_id].present? %> 
+        <% if !params[:charity_id].present?  %>
           <p>Or add a new charity:</p>
           <p>
             <%=f.fields_for :charity do |c| %>

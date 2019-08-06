@@ -7,6 +7,7 @@ class Charity < ApplicationRecord
 
   scope :alpha_order, -> { order(:name) }
   scope :top_three, -> { group(:name).order('distance DESC').limit(3) }
+  
 end
 
 
