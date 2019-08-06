@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def mostdistance
+    @user = User.most_distance
+  end
+
   private
   
   def user_params
