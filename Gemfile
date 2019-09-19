@@ -31,7 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
-
+gem "nokogiri", ">= 1.10.4"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
