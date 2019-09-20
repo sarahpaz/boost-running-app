@@ -3,7 +3,7 @@
     <h2>Participating Charities</h2>
     <p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
 
-    <ul>
+    <ul id="charities-container">
       <% @charities.each do |c| %>
         <li>
           <%= link_to c.name, charity_path(c.id), :class => "charity-name"  %><br>
