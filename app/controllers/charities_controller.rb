@@ -7,7 +7,11 @@ class CharitiesController < ApplicationController
 
   def index
     @charities = Charity.alpha_order 
-    @charity = Charity.new
+		@charity = Charity.new
+		respond_to do |format|
+			format.html
+			format.json { render json: @charities}
+		end
   end
 
   def new
