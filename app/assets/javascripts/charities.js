@@ -7,7 +7,7 @@ const charityClickHandler = () => {
   $(".charities").on("click", e => {
     e.preventDefault();
     // history.pushState(null, null, "/charities");
-    fetch("/charities.json")
+    fetch(`/charities.json`)
       .then(res => res.json())
       .then(charities => {
         $("#charities-container").html("");
