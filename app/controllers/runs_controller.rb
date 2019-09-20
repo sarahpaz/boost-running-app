@@ -4,7 +4,7 @@ class RunsController < ApplicationController
     if @charity = Charity.find_by(id: params[:charity_id])
       @runs = @charity.runs
     else
-      @runs = current_user.runs
+			@runs = current_user.runs
     end
   end
 
