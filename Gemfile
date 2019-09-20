@@ -71,3 +71,6 @@ gem 'bootstrap', '~> 4.3.1'
 
 # jquery-rails
 gem 'jquery-rails'
+
+# Use Active Model Serializers
+gem 'active_model_serializers'
