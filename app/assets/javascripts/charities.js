@@ -1,10 +1,10 @@
 $(() => {
-  charityClickHandlers();
+  charityClickHandler();
 });
 
-const charityClickHandlers = () => {
+const charityClickHandler = () => {
   $(".charities").on("click", e => {
     e.preventDefault();
-    console.log("hey");
+    alert("it works");
   });
 };
