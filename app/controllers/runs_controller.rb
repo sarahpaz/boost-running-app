@@ -5,7 +5,11 @@ class RunsController < ApplicationController
       @runs = @charity.runs
     else
 			@runs = current_user.runs
-    end
+		end
+		respond_to do |format|
+			format.html
+			format.json { render json: @runs}
+		end
   end
 
   def show
