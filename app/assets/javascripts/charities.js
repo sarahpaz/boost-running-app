@@ -5,16 +5,21 @@ $(() => {
 
 const charityClickHandler = () => {
   $(".charities").on("click", e => {
-    e.preventDefault();
-    // history.pushState(null, null, "/charities");
+    e.preventDefault(); //! prevent default behavior
+    // alert("test");
+    history.pushState(null, null, "/charities");
     fetch("/charities.json")
       .then(res => res.json())
       .then(charities => {
-        $("#charities-container").html("");
+        $("#charities-container").empty().append(`
+						<h2>Participating Charities</h2>
+						<p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
+					`);
+
         charities.forEach(charity => {
           let newCharity = new Charity(charity);
           let charityHtml = newCharity.formatIndex();
-          $("#charities-container").append(charityHtml);
+          $("#charities-container").append(charityHtml); //! id container in application.html.erb (layouts)
         });
       });
   });
