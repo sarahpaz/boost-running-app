@@ -6,12 +6,12 @@ class CharitiesController < ApplicationController
   end
 
   def index
-    @charities = Charity.alpha_order 
-		@charity = Charity.new
+		@charities = Charity.alpha_order 
 		respond_to do |format|
 			format.html
 			format.json { render json: @charities}
 		end
+		@charity = Charity.new
   end
 
   def new
