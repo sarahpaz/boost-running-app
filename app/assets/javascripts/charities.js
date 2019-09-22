@@ -3,6 +3,15 @@ $(() => {
   charityClickHandler();
 });
 
+// window.addEventListener(
+//   "load",
+//   function() {
+// alert("test");
+//     charityClickHandler();
+//   },
+//   false
+// );
+
 const charityClickHandler = () => {
   $(".charities").on("click", e => {
     e.preventDefault(); //* prevent default behavior
@@ -80,7 +89,7 @@ Charity.prototype.formatShow = function() {
   //* can't use arrow functions for prototype methods
   let charityRuns = this.runs.map(run => {
     if (run) {
-      return `<li>Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
+      return `Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
     }
   });
 
