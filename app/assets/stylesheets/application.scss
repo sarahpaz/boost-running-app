@@ -28,11 +28,14 @@ main {
 }
 
 .container-fluid {
-  height: -webkit-fill-available;
   background-color: white;
-  padding: 3em 0;
 }
 
+#app-container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 3em 0;
+}
 /* L O G I N */
 
 img.logo {
