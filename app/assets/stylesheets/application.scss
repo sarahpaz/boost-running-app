@@ -23,16 +23,11 @@ body {
 }
 
 main {
-  background-image: linear-gradient(to right, #5ce1e6, #fff8be);
+  background-color: #f0f0f5;
   height: 100vh;
 }
 
-.container-fluid {
-  background-color: white;
-}
-
 #app-container {
-  max-width: 1140px;
   margin: auto;
   padding: 3em 0;
 }
