@@ -23,6 +23,21 @@ const charityClickHandler = () => {
         });
       });
   });
+
+  $(document).on("click", ".show-link", function(e) {
+    e.preventDefault();
+    // alert("test");
+    $("#app-container").empty();
+    let charityId = $(this).attr("data-id");
+    history.pushState(null, null, `/charities/${charityId}`);
+    fetch(`/charities/${charityId}.json`)
+      .then(res => res.json())
+      .then(charity => {
+        let newCharity = new Charity(charity);
+        let charityHtml = newCharity.formatShow();
+        $("#app-container").append(charityHtml);
+      });
+  });
 };
 
 //****** Constructor functions
@@ -37,11 +52,21 @@ class Charity {
 
 //****** Prototype functions
 Charity.prototype.formatIndex = function() {
+  //* can't use arrow functions for prototype methods
   let charityHtml = `
 		<ul>
-			<li>${this.name}</li>
+			<li><a href='/charities/${this.id}' class="show-link" data-id='${this.id}'>${this.name}</a></li>
 			<p>${this.description}</p>
 		</ul>
+	`;
+  return charityHtml;
+};
+
+Charity.prototype.formatShow = function() {
+  //* can't use arrow functions for prototype methods
+  let charityHtml = `
+		<h2>${this.name}</h2>
+		<p>${this.description}</p>
 	`;
   return charityHtml;
 };
