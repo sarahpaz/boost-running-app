@@ -4,7 +4,7 @@
     <p>For every mile you run $3 will be donated to a charity of your choice! It's that easy! Track your runs, and raise some funds!</p>
     <p>What would you like to do today?</p>
     <%= link_to "Add a Run", new_run_path, :class => "welcome-link" %> | 
-    <%= link_to "Charities", charities_path, :class => "welcome-link"  %> |
+    <%= link_to "Charities", charities_path, :class => "welcome-link charities"  %> |
     <%= link_to "Profile", user_path(current_user.id), :class => "welcome-link"  %> 
   </div>
 </div>
