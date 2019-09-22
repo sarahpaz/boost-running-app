@@ -11,7 +11,6 @@ class CharitiesController < ApplicationController
 
   def index
 		@charities = Charity.alpha_order 
-		@charity = Charity.new
 		respond_to do |format|
 			format.html
 			format.json { render json: @charities}
@@ -25,7 +24,8 @@ class CharitiesController < ApplicationController
   def create
     @charity = Charity.new(charity_params) 
     if @charity.save
-      redirect_to charity_path(@charity.id)
+			# redirect_to charity_path(@charity.id) 
+			render json: @charity
     else
       @charities = Charity.alpha_order
       render :index
