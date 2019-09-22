@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :runs
-  resources :charities, only: [:index, :show]
+  resources :charities, only: [:index, :show, :new]
   resources :users, only: [:index, :new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#index'
