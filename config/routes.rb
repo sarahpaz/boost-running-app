@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
   get '/welcome' => 'sessions#show'
-  get '/mostdistance' => 'users#mostdistance'
+	get '/mostdistance' => 'users#mostdistance'
 
   resources :charities do 
     resources :runs, only: [:new, :index]
