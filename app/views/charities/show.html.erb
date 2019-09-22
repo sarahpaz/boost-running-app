@@ -1,22 +1,17 @@
-<div class="container-fluid"> 
-  <div class="container">
-    <h2><%= @charity.name %></h2>
+<h2><%= @charity.name %></h2>
 
-    <p><%= @charity.description %></p>
+<p><%= @charity.description %></p>
 
-    <h3>Total Raised</h3>
-    <p class="total-raised">$<%= charity_total_raised %></p>
-    <h3>Top Runner</h3>
-    <p class="top-runner"><%= top_runner %></p>
+<h3>Total Raised</h3>
+<p class="total-raised">$<%= charity_total_raised %></p>
+<h3>Top Runner</h3>
+<p class="top-runner"><%= top_runner %></p>
 
-    <h3>Runs</h3>
-  
-      <% @charity.runs.each do |r| %> 
-        Distance: <%= r.distance %> miles - Raised: $<%= r.distance * 3 %> - Runner: <%= link_to r.user.username, user_path(r.user) %><br><br>
-      <% end %>
+<h3>Runs</h3>
 
-      <%= runs_to_view %>
-      <%= link_to "Add a Run", new_charity_run_path(@charity), :class => 'boost-btn btn-primary btn-sm' %>
-  
-  </div>  
-</div>
+<% @charity.runs.each do |r| %> 
+	Distance: <%= r.distance %> miles - Raised: $<%= r.distance * 3 %> - Runner: <%= link_to r.user.username, user_path(r.user) %><br><br>
+<% end %>
+
+<%= runs_to_view %>
+<%= link_to "Add a Run", new_charity_run_path(@charity), :class => 'boost-btn btn-primary btn-sm' %>

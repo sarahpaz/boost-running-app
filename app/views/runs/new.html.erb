@@ -1,33 +1,29 @@
-<div class="container-fluid"> 
-  <div class="container"> 
-    <h2>Add a Run</h2>
+<h2>Add a Run</h2>
 
-    <%= render partial: 'layouts/errors', locals: {object: @run} %>
+<%= render partial: 'layouts/errors', locals: {object: @run} %>
 
-    <div>
-      <%= form_for(@run) do |f| %>
-        <%= render partial: 'layouts/run_form', locals: {f: f} %>
+<div>
+	<%= form_for(@run) do |f| %>
+		<%= render partial: 'layouts/run_form', locals: {f: f} %>
 
-        <p>
-          <%= f.label :charity %>:
-            <%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => params[:charity_id])%>
-        </p>
+		<p>
+			<%= f.label :charity %>:
+				<%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => params[:charity_id])%>
+		</p>
 
-        <% if !params[:charity_id].present?  %>
-          <p>Or add a new charity:</p>
-          <p>
-            <%= fields_for :charity do |c| %>
-              <%= c.label :name %>:
-              <%= c.text_field :name %><br><br>
-              <%= c.label :description %>:
-              <%= c.text_area :description %>
-            <% end %>
-          </p>
-        <% end %>
-        <p>
-          <%= f.submit "Create Run", :class => 'boost-btn btn-primary btn-sm' %>
-        </p>
-      <% end %>
-    </div>
-  </div>
+		<% if !params[:charity_id].present?  %>
+			<p>Or add a new charity:</p>
+			<p>
+				<%= fields_for :charity do |c| %>
+					<%= c.label :name %>:
+					<%= c.text_field :name %><br><br>
+					<%= c.label :description %>:
+					<%= c.text_area :description %>
+				<% end %>
+			</p>
+		<% end %>
+		<p>
+			<%= f.submit "Create Run", :class => 'boost-btn btn-primary btn-sm' %>
+		</p>
+	<% end %>
 </div>

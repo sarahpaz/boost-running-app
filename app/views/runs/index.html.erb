@@ -1,17 +1,15 @@
-<div class="container-fluid">
-  <div class="container">
-  <h2>Runs</h2>
+<h2>Runs</h2>
 
-  <% @runs.each do |r| %>
-    <div>
-      Runner: <%= r.user.username %><br>
-      Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
-      Distance (miles): <%= r.distance %><br>
-      Duration (mins): <%= r.duration %><br>
-      Location: <%= r.location %><br>
-      Notes: <%= r.notes %><br><br>
-    </div>
-  <% end %>
-  <br>
-  <%= link_to "Back to All Charities", charities_path %>
-</div>
+<% @runs.each do |r| %>
+	<div>
+		Runner: <%= r.user.username %><br>
+		Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
+		Distance (miles): <%= r.distance %><br>
+		Duration (mins): <%= r.duration %><br>
+		Location: <%= r.location %><br>
+		Notes: <%= r.notes %><br><br>
+	</div>
+<% end %>
+<br>
+<%= link_to "Back to All Charities", charities_path %>
+

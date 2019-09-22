@@ -1,21 +1,17 @@
-<div class="container-fluid">
-  <div class="container">
-    <h2>Edit a Run</h2>
+<h2>Edit a Run</h2>
 
-    <div>
-      <%= form_for(@run) do |f| %>
-        <%= render partial: 'layouts/run_form', locals: {f: f} %>
+<div>
+	<%= form_for(@run) do |f| %>
+		<%= render partial: 'layouts/run_form', locals: {f: f} %>
 
-        <p>
-          <%= f.label :charity %>:
-            <%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => @run.charity_id) %>
-        </p>
-        
-        <p>
-          <%= f.submit "Edit Run", :class => 'boost-btn btn-primary btn-sm' %>
-        </p>
+		<p>
+			<%= f.label :charity %>:
+				<%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => @run.charity_id) %>
+		</p>
+		
+		<p>
+			<%= f.submit "Edit Run", :class => 'boost-btn btn-primary btn-sm' %>
+		</p>
 
-      <% end %>
-    </div>
-  </div>
+	<% end %>
 </div>

@@ -1,34 +1,31 @@
-<div class="container-fluid">
-  <div class="container">
-    <%= display_welcome_message %>
+<%= display_welcome_message %>
 
-    <div class="row">
-      <div class="col-md">
-        <h3>All Runs</h3>
-          <% @user.runs.each do |r| %>
-            <div>
-            <br>
-              Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
-              Distance (miles): <%= r.distance %><br>
-              Duration (mins): <%= r.duration %><br>
-              Location: <%= r.location %><br>
-              Notes: <%= r.notes %> <br>
-              Amount Raised: $<%= r.distance * 3 %>
-              <div><%= user_edit(r.id) %>&nbsp;<%= user_delete(r.id) %></div>
-            </div>
-          <% end %>
-      </div>
+<div class="row">
+	<div class="col-md">
+		<h3>All Runs</h3>
+			<% @user.runs.each do |r| %>
+				<div>
+				<br>
+					Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
+					Distance (miles): <%= r.distance %><br>
+					Duration (mins): <%= r.duration %><br>
+					Location: <%= r.location %><br>
+					Notes: <%= r.notes %> <br>
+					Amount Raised: $<%= r.distance * 3 %>
+					<div><%= user_edit(r.id) %>&nbsp;<%= user_delete(r.id) %></div>
+				</div>
+			<% end %>
+	</div>
 
-    <div class="col-sm">
-      <h3>Top Charities</h3>
-        <% @user.charities.top_three.each do |c| %>
-          Name: <%= c.name %> | 
-          Total Distance: <%= c.runs.total_distance(@user) %>
-          Total Raised: $<%= c.runs.total_amount_raised(@user) %><br><br>
-        <% end %>
+<div class="col-sm">
+	<h3>Top Charities</h3>
+		<% @user.charities.top_three.each do |c| %>
+			Name: <%= c.name %> | 
+			Total Distance: <%= c.runs.total_distance(@user) %>
+			Total Raised: $<%= c.runs.total_amount_raised(@user) %><br><br>
+		<% end %>
 
-      <h3>Total Raised</h3>
-      <p class="total-raised">$<%= total_raised %></p>
-    </div>
-  </div>
+	<h3>Total Raised</h3>
+	<p class="total-raised">$<%= total_raised %></p>
 </div>
+
