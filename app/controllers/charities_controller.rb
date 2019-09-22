@@ -30,7 +30,7 @@ class CharitiesController < ApplicationController
       @charities = Charity.alpha_order
       render :index
     end
-  end
+	end
 
   private
 
