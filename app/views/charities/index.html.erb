@@ -1,21 +1,18 @@
-<div class="container-fluid">
-  <div class="container">
-    <h2>Participating Charities</h2>
-    <p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
+<h2>Participating Charities</h2>
+<p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
 
-    <ul>
-      <% @charities.each do |c| %>
-        <li>
-          <%= link_to c.name, charity_path(c.id), :class => "charity-name"  %><br>
-          <%= c.description %>
-        </li><br>
-      <% end %>
-    </ul>
+<ul>
+	<% @charities.each do |c| %>
+		<li>
+			<%= link_to c.name, charity_path(c.id), :class => "charity-name"  %><br>
+			<%= c.description %>
+		</li><br>
+	<% end %>
+</ul>
 
-    <h2>Add a New Charity</h2>
+<h2>Add a New Charity</h2>
 
-    <%= render partial: 'layouts/errors', locals: {object: @charity} %>
+<%= render partial: 'layouts/errors', locals: {object: @charity} %>
 
-    <%= render partial: 'layouts/charity_form' %>
-  </div>
-</div>
+<%= render partial: 'layouts/charity_form' %>
+
