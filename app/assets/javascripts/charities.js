@@ -38,6 +38,20 @@ const charityClickHandler = () => {
         $("#app-container").append(charityHtml);
       });
   });
+
+  $("#new_charity").on("submit", function(e) {
+    e.preventDefault();
+    // alert("test");
+    const values = $(this).serialize(); //* serializes the data entered into the form
+
+    $.post(`/charities`, values).done(function(data) {
+      $("#app-container").empty();
+      const newCharity = new Charity(data);
+      const newCharityHtml = newCharity.formatShow();
+
+      $("#app-container").append(newCharityHtml);
+    });
+  });
 };
 
 //****** Constructor functions
@@ -64,9 +78,25 @@ Charity.prototype.formatIndex = function() {
 
 Charity.prototype.formatShow = function() {
   //* can't use arrow functions for prototype methods
+  let charityRuns = (this.runs.map = run => {
+    return `<li>${run}</li>`;
+  });
+
   let charityHtml = `
 		<h2>${this.name}</h2>
 		<p>${this.description}</p>
+
+		<h3>Top Raised</h3>
+
+		<h3>Top Runner</h3>
+
+		<h3>Runs</h3>
+		<ul>
+			${charityRuns}
+		</ul>
+
+		<button class="boost-btn btn-primary btn-sm"><a href='/charities/${this.id}/runs'>View Runs </a></button> 
+		<button class="boost-btn btn-primary btn-sm"><a href='/charities/${this.id}/runs/new'>Add a Run</a></button>
 	`;
   return charityHtml;
 };
