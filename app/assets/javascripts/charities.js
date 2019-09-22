@@ -1,4 +1,4 @@
-//****** Document ready
+//****** Document ready (allows DOM manipulation)
 $(() => {
   charityClickHandler();
 });
@@ -78,8 +78,10 @@ Charity.prototype.formatIndex = function() {
 
 Charity.prototype.formatShow = function() {
   //* can't use arrow functions for prototype methods
-  let charityRuns = (this.runs.map = run => {
-    return `<li>${run}</li>`;
+  let charityRuns = this.runs.map(run => {
+    if (run) {
+      return `<li>Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
+    }
   });
 
   let charityHtml = `
@@ -95,8 +97,8 @@ Charity.prototype.formatShow = function() {
 			${charityRuns}
 		</ul>
 
-		<button class="boost-btn btn-primary btn-sm"><a href='/charities/${this.id}/runs'>View Runs </a></button> 
-		<button class="boost-btn btn-primary btn-sm"><a href='/charities/${this.id}/runs/new'>Add a Run</a></button>
+		<a class="boost-btn btn-primary btn-sm" href='/charities/${this.id}/runs'>View Runs </a>&nbsp;
+		<a class="boost-btn btn-primary btn-sm" href='/charities/${this.id}/runs/new'>Add a Run</a>
 	`;
   return charityHtml;
 };
