@@ -27,8 +27,7 @@ class CharitiesController < ApplicationController
 			# redirect_to charity_path(@charity.id) 
 			render json: @charity
     else
-      @charities = Charity.alpha_order
-      render :index
+			render :new
     end
 	end
 
