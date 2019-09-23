@@ -78,11 +78,11 @@ Charity.prototype.formatIndex = function() {
 
 Charity.prototype.formatShow = function() {
   //* can't use arrow functions for prototype methods
-  // let charityRuns = this.runs.map(run => {
-  //   if (run) {
-  //     return `Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
-  //   }
-  // });
+  let charityRuns = this.runs.map(run => {
+    if (run) {
+      return `Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
+    }
+  });
 
   let charityHtml = `
 		<h2>${this.name}</h2>
@@ -94,7 +94,7 @@ Charity.prototype.formatShow = function() {
 
 		<h3>Runs</h3>
 		<ul>
-			
+			${charityRuns}
 		</ul>
 
 		<a class="boost-btn btn-primary btn-sm" href='/charities/${this.id}/runs'>View Runs </a>&nbsp;
