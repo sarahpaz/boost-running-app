@@ -2,6 +2,9 @@
 // $(() => {
 //   charityClickHandler();
 // });
+document.addEventListener("turbolinks:load", function() {
+  charityClickHandler();
+});
 
 const charityClickHandler = () => {
   $(".charities").on("click", e => {
@@ -11,7 +14,7 @@ const charityClickHandler = () => {
     fetch("/charities.json") //* fetch requests returns a promise
       .then(res => res.json()) //* when a promise is resolved with a value you can add .then method
       .then(charities => {
-        $("#app-container").empty().append(`
+        $("#app-container").html("").append(`
 						<h2>Participating Charities</h2>
 						<p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
 					`);
@@ -27,7 +30,7 @@ const charityClickHandler = () => {
   $(document).on("click", ".show-link", function(e) {
     e.preventDefault();
     // alert("test");
-    $("#app-container").empty();
+    $("#app-container").html("");
     let charityId = $(this).attr("data-id");
     history.pushState(null, null, `/charities/${charityId}`);
     fetch(`/charities/${charityId}.json`)
@@ -45,7 +48,7 @@ const charityClickHandler = () => {
     const values = $(this).serialize(); //* serializes the data entered into the form
 
     $.post(`/charities`, values).done(function(data) {
-      $("#app-container").empty();
+      $("#app-container").html("");
       const newCharity = new Charity(data);
       const newCharityHtml = newCharity.formatShow();
 
@@ -64,12 +67,11 @@ class Charity {
   }
 }
 
-//****** Prototype functions
+//****** Prototype functions - can't use arrow functions for prototype methods
 Charity.prototype.formatIndex = function() {
-  //* can't use arrow functions for prototype methods
   let charityHtml = `
 		<ul>
-			<li><a href='/charities/${this.id}' class="show-link" data-id='${this.id}'>${this.name}</a></li>
+			<li><a href='/charities/${this.id}' class="show-link" data-id='${this.id}'><strong>${this.name}</strong></a></li>
 			<p>${this.description}</p>
 		</ul>
 	`;
@@ -77,10 +79,10 @@ Charity.prototype.formatIndex = function() {
 };
 
 Charity.prototype.formatShow = function() {
-  //* can't use arrow functions for prototype methods
   let charityRuns = this.runs.map(run => {
     if (run) {
-      return `Distance: ${run.distance} - Duration: ${run.duration} - Location: ${run.location}</li>`;
+      return `<li>Distance: ${run.distance} - Raised: ${run.distance *
+        3} - Location: ${run.location}</li>`;
     }
   });
 
@@ -94,11 +96,15 @@ Charity.prototype.formatShow = function() {
 
 		<h3>Runs</h3>
 		<ul>
-			${charityRuns}
+			${charityRuns.join("")}
 		</ul>
 
-		<a class="boost-btn btn-primary btn-sm" href='/charities/${this.id}/runs'>View Runs </a>&nbsp;
-		<a class="boost-btn btn-primary btn-sm" href='/charities/${this.id}/runs/new'>Add a Run</a>
+		<a class="boost-btn btn-primary btn-sm" href='/charities/${
+      this.id
+    }/runs'>View Runs </a>&nbsp;
+		<a class="boost-btn btn-primary btn-sm" href='/charities/${
+      this.id
+    }/runs/new'>Add a Run</a>
 	`;
   return charityHtml;
 };
