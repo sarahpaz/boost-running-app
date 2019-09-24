@@ -90,10 +90,6 @@ Charity.prototype.formatShow = function() {
 		<h2>${this.name}</h2>
 		<p>${this.description}</p>
 
-		<h3>Top Raised</h3>
-
-		<h3>Top Runner</h3>
-
 		<h3>Runs</h3>
 		<ul>
 			${charityRuns.join("")}
