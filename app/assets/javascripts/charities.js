@@ -44,7 +44,7 @@ const charityClickHandler = () => {
 
   $("#new_charity").on("submit", function(e) {
     e.preventDefault();
-    alert("test");
+    // alert("test");
     const values = $(this).serialize(); //* serializes the data entered into the form
 
     $.post(`/charities`, values).done(function(data) {
@@ -80,7 +80,7 @@ Charity.prototype.formatIndex = function() {
 
 Charity.prototype.formatShow = function() {
   let charityRuns = this.runs.map(run => {
-    if (this.runs !== null && this.runs > 0) {
+    if (run) {
       return `<li>Distance: ${run.distance} - Raised: ${run.distance *
         3} - Location: ${run.location}</li>`;
     }
