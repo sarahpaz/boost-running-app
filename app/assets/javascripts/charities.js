@@ -1,10 +1,10 @@
 //****** Document ready (allows DOM manipulation)
-// $(() => {
-//   charityClickHandler();
-// });
-document.addEventListener("turbolinks:load", function() {
+$(() => {
   charityClickHandler();
 });
+// document.addEventListener("turbolinks:load", function() {
+//   charityClickHandler();
+// });
 
 const charityClickHandler = () => {
   $(".charities").on("click", e => {
@@ -44,7 +44,7 @@ const charityClickHandler = () => {
 
   $("#new_charity").on("submit", function(e) {
     e.preventDefault();
-    // alert("test");
+    alert("test");
     const values = $(this).serialize(); //* serializes the data entered into the form
 
     $.post(`/charities`, values).done(function(data) {
@@ -71,7 +71,7 @@ class Charity {
 Charity.prototype.formatIndex = function() {
   let charityHtml = `
 		<ul>
-			<li><a href='/charities/${this.id}' class="show-link" data-id='${this.id}'><strong>${this.name}</strong></a></li>
+			<li><a href='/charities/${this.id}' class="show-link charity-name" data-id='${this.id}'><strong>${this.name}</strong></a></li>
 			<p>${this.description}</p>
 		</ul>
 	`;
@@ -80,7 +80,7 @@ Charity.prototype.formatIndex = function() {
 
 Charity.prototype.formatShow = function() {
   let charityRuns = this.runs.map(run => {
-    if (run) {
+    if (this.runs !== null && this.runs > 0) {
       return `<li>Distance: ${run.distance} - Raised: ${run.distance *
         3} - Location: ${run.location}</li>`;
     }
