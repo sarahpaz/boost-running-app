@@ -14,7 +14,11 @@ class RunsController < ApplicationController
 
   def show
     @run = Run.find_by(id: params[:id]) #create a helper / before action
-    redirect_to runs_path if !@run
+		redirect_to runs_path if !@run
+		respond_to do |format|
+			format.html
+			format.json { render json: @run}
+		end
   end
 
   def new
