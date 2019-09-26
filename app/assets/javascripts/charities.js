@@ -11,7 +11,7 @@ $(function() {
 
 const charitiesIndexPageLoadHandler = () => {
   // alert("test");
-  history.pushState(null, null, "charities");
+  history.pushState(null, null, "/charities");
   fetch("/charities.json") //* fetch requests returns a promise
     .then(res => res.json()) //* when a promise is resolved with a value you can add .then method
     .then(charities => {
@@ -29,30 +29,30 @@ const charitiesIndexPageLoadHandler = () => {
 };
 
 const charityClickHandler = () => {
-  $(".charity-index-link").on("click", e => {
+  $(document).on("click", ".charities-link", e => {
+    // debugger;
     e.preventDefault();
-    // console.log("clicked");
+    // alert("test");
     charitiesIndexPageLoadHandler();
   });
 };
 
-// const charityShowPageLoadHandler = () => {
-//   console.log("show page");
-//   // debugger;
-//   // $("#app-container").html("");
-//   $.get(`${window.location.href}.json`),
-//     function(data) {
-//       const charityId = data.id;
-//       history.pushState(null, null, `/charities/${charityId}`);
-//       fetch(`/charities/${charityId}.json`)
-//         .then(res => res.json())
-//         .then(charity => {
-//           let newCharity = new Charity(charity);
-//           let charityHtml = newCharity.formatShow();
-//           $("#app-container").append(charityHtml);
-//         });
-//     };
-// };
+const charityShowPageLoadHandler = () => {
+  $("#app-container").html("");
+  $.get(`${window.location.href}.json`),
+    function(data) {
+      debugger;
+      const charityId = data.id;
+      history.pushState(null, null, `/charities/${charityId}`);
+      fetch(`/charities/${charityId}.json`)
+        .then(res => res.json())
+        .then(charity => {
+          let newCharity = new Charity(charity);
+          let charityHtml = newCharity.formatShow();
+          $("#app-container").append(charityHtml);
+        });
+    };
+};
 
 //   $(document).on("click", ".show-link", function(e) {
 //     e.preventDefault();
