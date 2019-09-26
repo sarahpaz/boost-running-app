@@ -1,61 +1,88 @@
 //****** Document ready (allows DOM manipulation)
-$(() => {
-  charityClickHandler();
+$(function() {
+  charityClickHandler(); //* always runs
+
+  if ($(".charities.index").length > 0) {
+    charitiesIndexPageLoadHandler(); //* only runs for charities index page
+  } else if ($(".charities.show").length > 0) {
+    charityShowPageLoadHandler(); //* only runs for charity show page
+  }
 });
-// document.addEventListener("turbolinks:load", function() {
-//   charityClickHandler();
-// });
+
+const charitiesIndexPageLoadHandler = () => {
+  // alert("test");
+  history.pushState(null, null, "charities");
+  fetch("/charities.json") //* fetch requests returns a promise
+    .then(res => res.json()) //* when a promise is resolved with a value you can add .then method
+    .then(charities => {
+      $("#app-container").html("").append(`
+				<h2>Participating Charities</h2>
+				<p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
+			`);
+
+      charities.forEach(charity => {
+        let newCharity = new Charity(charity);
+        let charityHtml = newCharity.formatIndex();
+        $("#app-container").append(charityHtml); //* id container in application.html.erb (layouts)
+      });
+    });
+};
 
 const charityClickHandler = () => {
-  $(".charities").on("click", e => {
-    e.preventDefault(); //* prevent default behavior
-    // alert("test");
-    history.pushState(null, null, "/charities"); //* change url to appear as /charities
-    fetch("/charities.json") //* fetch requests returns a promise
-      .then(res => res.json()) //* when a promise is resolved with a value you can add .then method
-      .then(charities => {
-        $("#app-container").html("").append(`
-						<h2>Participating Charities</h2>
-						<p>Our list continues to grow as runners add charities they are passionate about. If you've got a charity in mind that isn't listed, add it below!</p>
-					`);
-
-        charities.forEach(charity => {
-          let newCharity = new Charity(charity);
-          let charityHtml = newCharity.formatIndex();
-          $("#app-container").append(charityHtml); //* id container in application.html.erb (layouts)
-        });
-      });
-  });
-
-  $(document).on("click", ".show-link", function(e) {
+  $(".charity-index-link").on("click", e => {
     e.preventDefault();
-    // alert("test");
-    $("#app-container").html("");
-    let charityId = $(this).attr("data-id");
-    history.pushState(null, null, `/charities/${charityId}`);
-    fetch(`/charities/${charityId}.json`)
-      .then(res => res.json())
-      .then(charity => {
-        let newCharity = new Charity(charity);
-        let charityHtml = newCharity.formatShow();
-        $("#app-container").append(charityHtml);
-      });
-  });
-
-  $("#new_charity").on("submit", function(e) {
-    e.preventDefault();
-    // alert("test");
-    const values = $(this).serialize(); //* serializes the data entered into the form
-
-    $.post(`/charities`, values).done(function(data) {
-      $("#app-container").html("");
-      const newCharity = new Charity(data);
-      const newCharityHtml = newCharity.formatShow();
-
-      $("#app-container").append(newCharityHtml);
-    });
+    // console.log("clicked");
+    charitiesIndexPageLoadHandler();
   });
 };
+
+// const charityShowPageLoadHandler = () => {
+//   console.log("show page");
+//   // debugger;
+//   // $("#app-container").html("");
+//   $.get(`${window.location.href}.json`),
+//     function(data) {
+//       const charityId = data.id;
+//       history.pushState(null, null, `/charities/${charityId}`);
+//       fetch(`/charities/${charityId}.json`)
+//         .then(res => res.json())
+//         .then(charity => {
+//           let newCharity = new Charity(charity);
+//           let charityHtml = newCharity.formatShow();
+//           $("#app-container").append(charityHtml);
+//         });
+//     };
+// };
+
+//   $(document).on("click", ".show-link", function(e) {
+//     e.preventDefault();
+//     // alert("test");
+//     $("#app-container").html("");
+//     let charityId = $(this).attr("data-id");
+//     history.pushState(null, null, `/charities/${charityId}`);
+//     fetch(`/charities/${charityId}.json`)
+//       .then(res => res.json())
+//       .then(charity => {
+//         let newCharity = new Charity(charity);
+//         let charityHtml = newCharity.formatShow();
+//         $("#app-container").append(charityHtml);
+//       });
+//   });
+
+$("#new_charity").on("submit", function(e) {
+  e.preventDefault();
+  // alert("test");
+  const values = $(this).serialize(); //* serializes the data entered into the form
+
+  $.post(`/charities`, values).done(function(data) {
+    $("#app-container").html("");
+    const newCharity = new Charity(data);
+    const newCharityHtml = newCharity.formatShow();
+
+    $("#app-container").append(newCharityHtml);
+  });
+});
+// };
 
 //****** Constructor functions
 class Charity {
