@@ -1,7 +1,9 @@
 //****** Document ready (allows DOM manipulation)
 $(function() {
   charityClickHandler(); //* always runs
+  newCharityClickHandler(); //* listen for new charity submit
 
+  //ensures JS runs when page refreshes
   if ($(".charities.index").length > 0) {
     charitiesIndexPageLoadHandler(); //* only runs for charities index page
   } else if ($(".charities.show").length > 0) {
@@ -30,7 +32,6 @@ const charitiesIndexPageLoadHandler = () => {
 
 const charityClickHandler = () => {
   $(document).on("click", ".charities-link", e => {
-    // debugger;
     e.preventDefault();
     // alert("test");
     charitiesIndexPageLoadHandler();
@@ -38,10 +39,10 @@ const charityClickHandler = () => {
 };
 
 const charityShowPageLoadHandler = () => {
-  $("#app-container").html("");
+  alert("show pageee");
+  $("#app-container").html("this is working");
   $.get(`${window.location.href}.json`),
     function(data) {
-      debugger;
       const charityId = data.id;
       history.pushState(null, null, `/charities/${charityId}`);
       fetch(`/charities/${charityId}.json`)
@@ -68,21 +69,21 @@ const charityShowPageLoadHandler = () => {
 //         $("#app-container").append(charityHtml);
 //       });
 //   });
+const newCharityClickHandler = () => {
+  $("#new_charity").on("submit", function(e) {
+    e.preventDefault();
+    // alert("test");
+    const values = $(this).serialize(); //* serializes the data entered into the form
 
-$("#new_charity").on("submit", function(e) {
-  e.preventDefault();
-  // alert("test");
-  const values = $(this).serialize(); //* serializes the data entered into the form
+    $.post(`/charities`, values).done(function(data) {
+      $("#app-container").html("");
+      const newCharity = new Charity(data);
+      const newCharityHtml = newCharity.formatShow();
 
-  $.post(`/charities`, values).done(function(data) {
-    $("#app-container").html("");
-    const newCharity = new Charity(data);
-    const newCharityHtml = newCharity.formatShow();
-
-    $("#app-container").append(newCharityHtml);
+      $("#app-container").append(newCharityHtml);
+    });
   });
-});
-// };
+};
 
 //****** Constructor functions
 class Charity {
