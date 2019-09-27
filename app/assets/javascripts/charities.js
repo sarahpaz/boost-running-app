@@ -112,7 +112,7 @@ Charity.prototype.formatShow = function() {
   let charityRuns = this.runs.map(run => {
     if (run) {
       return `<li>Distance: ${run.distance} - Raised: ${run.distance *
-        3} - Location: ${run.location} - <a href="/users/${run.user_id}">${
+        3} - Location: ${run.location} - <a href="/user/${run.user}">${
         run.username
       }</a></li>`;
     }
