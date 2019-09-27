@@ -1,6 +1,6 @@
 <h2>Another run, another donation.</h2>
 	<div>
-	Charity: <%= link_to @run.charity.name, charity_path(@run.charity.id) %><br>
+	Charity: <%= link_to @run.charity.name, charity_path(@run.charity.id), :class => "show-link" %><br>
 	Distance (miles): <%= @run.distance %><br>
 	Duration (mins): <%= @run.duration %><br>
 	Location: <%= @run.location %><br><br>
