@@ -3,7 +3,7 @@
 <% @runs.each do |r| %>
 	<div>
 		Runner: <%= r.user.username %><br>
-		Charity: <%= link_to r.charity.name, charity_path(r.charity.id) %><br>
+		Charity: <%= link_to r.charity.name, charity_path(r.charity.id), class: "show-link" %><br>
 		Distance (miles): <%= r.distance %><br>
 		Duration (mins): <%= r.duration %><br>
 		Location: <%= r.location %><br>
