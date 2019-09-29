@@ -25,7 +25,9 @@ class CharitiesController < ApplicationController
     @charity = Charity.new(charity_params) 
     if @charity.save
 			# redirect_to charity_path(@charity.id) 
-			render json: @charity
+			respond_to do |format|
+				format.json { render json: @charity}
+			end
     else
 			render :new
     end
