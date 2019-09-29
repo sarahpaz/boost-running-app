@@ -2,7 +2,7 @@ class CharitiesController < ApplicationController
 
   def show
     @charity = Charity.find_by(id: params[:id])
-		redirect_to charities_path if !@charity
+		# redirect_to charities_path if !@charity
 		respond_to do |format|
 			format.html
 			format.json { render json: @charity}
