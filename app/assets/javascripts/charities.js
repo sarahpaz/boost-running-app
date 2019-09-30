@@ -81,7 +81,6 @@ const newCharityClickHandler = () => {
       $("#app-container").html("");
       const newCharity = new Charity(data);
       const newCharityHtml = newCharity.formatShow();
-
       $("#app-container").append(newCharityHtml);
     });
   });
