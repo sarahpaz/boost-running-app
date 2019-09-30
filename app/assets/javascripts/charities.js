@@ -2,7 +2,7 @@
 $(function() {
   charityClickHandler(); //* always runs
   newCharityClickHandler(); //* listen for new charity submit
-  charityShowClickHandler();
+  charityShowClickHandler(); //* charity show page click handler
   //ensures JS runs when page refreshes
   if ($(".charities.index").length > 0) {
     charitiesIndexPageLoadHandler(); //* only runs for charities index page
