@@ -11,17 +11,6 @@
 				<%= f.collection_select(:charity_id, Charity.all, :id, :name, :include_blank => "Select a charity", :selected => params[:charity_id])%>
 		</p>
 
-		<% if !params[:charity_id].present?  %>
-			<p>Or add a new charity:</p>
-			<p>
-				<%= fields_for :charity do |c| %>
-					<%= c.label :name %>:
-					<%= c.text_field :name %><br><br>
-					<%= c.label :description %>:
-					<%= c.text_area :description %>
-				<% end %>
-			</p>
-		<% end %>
 		<p>
 			<%= f.submit "Create Run", :class => 'boost-btn btn-primary btn-sm' %>
 		</p>
