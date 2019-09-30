@@ -13,7 +13,7 @@ class RunsController < ApplicationController
   end
 
   def show
-    @run = Run.find_by(id: params[:run_id]) #create a helper / before action
+    @run = Run.find_by(id: params[:id]) #create a helper / before action
 		# redirect_to runs_path if !@run
 		respond_to do |format|
 			format.html
@@ -27,9 +27,9 @@ class RunsController < ApplicationController
   end
 
   def create
-    @run = Run.new(run_params)
+		@run = Run.new(run_params)
     @run.user_id = current_user.id
-    if @run.save
+		if @run.save
       redirect_to run_path(@run)
     else
       render :new
