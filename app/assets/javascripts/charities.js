@@ -3,6 +3,7 @@ $(function() {
   charityClickHandler(); //* always runs
   newCharityClickHandler(); //* listen for new charity submit
   charityShowClickHandler(); //* charity show page click handler
+  charitySortClickHandler();
   //ensures JS runs when page refreshes
   if ($(".charities.index").length > 0) {
     charitiesIndexPageLoadHandler(); //* only runs for charities index page
@@ -19,6 +20,8 @@ const charitiesIndexPageLoadHandler = () => {
     .then(charities => {
       $("#app-container").html("").append(`
 				<h2>Participating Charities</h2>
+
+				<button class="sort-charities" onclick="charitySortClickHandler()">Sort</button>
 			`);
 
       charities.forEach(charity => {
@@ -28,6 +31,36 @@ const charitiesIndexPageLoadHandler = () => {
       });
     });
 };
+
+function charitySortClickHandler() {
+  $(".sort-charities").on("click", e => {
+    // console.log("clicked");
+    fetch(`/charities.json`)
+      .then(res => res.json())
+      .then(charities => {
+        $("#app-container").html("");
+        // console.log(charities);
+        charities.sort(function(a, b) {
+          var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+          var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          // names must be equal
+          return 0;
+        });
+        charities.forEach(charity => {
+          let newCharity = new Charity(charity);
+          let charityHtml = newCharity.formatIndex();
+          $("#app-container").append(charityHtml); //* id container in application.html.erb (layouts)
+        });
+      });
+  });
+}
 
 const charityClickHandler = () => {
   $(document).on("click", ".charities-link", e => {
