@@ -2,7 +2,7 @@ class CharitiesController < ApplicationController
 
   def show
     @charity = Charity.find_by(id: params[:id])
-		# redirect_to charities_path if !@charity
+		redirect_to charities_path if !@charity
 		respond_to do |format|
 			format.html
 			format.json { render json: @charity}
@@ -24,9 +24,9 @@ class CharitiesController < ApplicationController
   def create
     @charity = Charity.new(charity_params) 
     if @charity.save
-			# redirect_to charity_path(@charity.id) 
+			#redirect_to charity_path(@charity.id) 
 			respond_to do |format|
-				format.json { render json: @charity}
+				format.json { render json: @charity }
 			end
     else
 			render :new
