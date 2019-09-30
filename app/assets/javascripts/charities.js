@@ -1,4 +1,4 @@
-//****** Document ready (allows DOM manipulation)
+//****** Document ready (executes once the DOM is completely loaded - allows DOM manipulation)
 $(function() {
   charityClickHandler(); //* always runs
   newCharityClickHandler(); //* listen for new charity submit
