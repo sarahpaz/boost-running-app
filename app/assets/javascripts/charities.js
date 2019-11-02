@@ -3,7 +3,7 @@ $(function() {
   charityClickHandler(); //* always runs
   newCharityClickHandler(); //* listen for new charity submit
   charityShowClickHandler(); //* charity show page click handler
-  charitySortClickHandler();
+  charitySortClickHandler(); //* charity sort feature for assessment
   //ensures JS runs when page refreshes
   if ($(".charities.index").length > 0) {
     charitiesIndexPageLoadHandler(); //* only runs for charities index page
@@ -49,7 +49,6 @@ function charitySortClickHandler() {
           if (nameA > nameB) {
             return 1;
           }
-
           // names must be equal
           return 0;
         });
